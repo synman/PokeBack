@@ -1,0 +1,31 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.shellware.PokeBack"
+      android:versionCode="2"
+      android:versionName="1.1">
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name="PokeBackActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity><receiver android:name="PokeBackReceiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+<!--         <activity android:name="PokeBackActivity"
+             	  android:icon="@drawable/icon" 
+        		  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        
+        </activity>  -->
+        
+    </application>
+    
+     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-sdk android:minSdkVersion="7" />
+</manifest>
