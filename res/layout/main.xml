@@ -1,10 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    
-    
-    
-    
-</LinearLayout>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/app_status" android:layout_centerHorizontal="true" android:layout_alignParentTop="true" android:layout_marginTop="10dp"/>
+
+    <com.shellware.PokeBack.PokeBackToggleButton
+        android:id="@+id/enabledButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" android:layout_below="@id/textView1" android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_stats"
+        android:textAppearance="?android:attr/textAppearanceMedium" android:layout_below="@id/enabledButton" android:layout_centerHorizontal="true" android:layout_marginTop="20dp"/>
+
+	<GridView
+        android:layout_below="@id/textView2"
+		android:id="@+id/statsGrid"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:numColumns="2"
+		android:gravity="right">
+	</GridView>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:layout_toLeftOf="@+id/textView1"
+        android:src="@drawable/icon" />
+
+</RelativeLayout>

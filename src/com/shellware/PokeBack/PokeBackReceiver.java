@@ -13,35 +13,53 @@ import android.util.Log;
 
 public class PokeBackReceiver extends BroadcastReceiver {
     private static final String TAG = "PokeBack";
-    private static final String POKED_KEYWORD = "You have been poked on Facebook";
+    private static final String POKED_KEYPHRASE = "You have been poked on Facebook by ";
     
 	@Override
 	public void onReceive(Context ctx, Intent intent) {
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        
+		if (!prefs.getBoolean("receiver_active", true)) {
+        	Log.d(TAG, "Service Disabled");
+			return;
+		}
+		
+		
         Bundle bundle = intent.getExtras();        
         SmsMessage[] msgs = null;
 
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-		        
         if (bundle != null) {
         	final long lastMessageTimestamp = prefs.getLong("last_message_timestamp", 0);
+        	final long totalMessageCount = prefs.getLong("total_message_count", 0);
         	
         	Object[] pdus = (Object[]) bundle.get("pdus");
             msgs = new SmsMessage[pdus.length];            
 
             for (int i = 0; i < msgs.length; i++) {
                 msgs[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
-                
-                if (msgs[i].getMessageBody() != null && msgs[i].getMessageBody().startsWith(POKED_KEYWORD) &&
+            	final String msg = msgs[i].getMessageBody();
+
+                if (msgs[i].getMessageBody() != null && msg.startsWith(POKED_KEYPHRASE) &&
                 		msgs[i].getTimestampMillis() > lastMessageTimestamp) {
                 	
                 	SmsManager sm = SmsManager.getDefault();
                 	sm.sendTextMessage(msgs[i].getOriginatingAddress(), null, "P", null, null);
-             
+                	       
+                	String senderName = msg.replace(POKED_KEYPHRASE, "");
+                	senderName = senderName.substring(0, senderName.indexOf("."));
+                	
                 	Editor edit = prefs.edit();
                 	edit.putLong("last_message_timestamp", msgs[i].getTimestampMillis());
                 	edit.commit();
                 	
-                	Log.d(TAG, "poked  timestamp: " + msgs[i].getTimestampMillis());
+                	edit.putLong("total_message_count", totalMessageCount + 1);
+                	edit.commit();
+                	
+                	edit.putInt("stats_for_" + senderName.replace(" ", "_"), prefs.getInt("stats_for_" + senderName.replace(" ", "_"), 0) + 1);
+                	edit.commit();
+                	
+                	Log.d(TAG, "poked by " + senderName + " timestamp: " + msgs[i].getTimestampMillis());
                 }
             }
         }                         		
