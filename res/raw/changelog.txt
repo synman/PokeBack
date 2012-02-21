@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <style type='text/css'>
+      a            { color:#a0a0e0 }
+      div.title    { 
+          color:#C0F0C0; 
+          font-size:1.2em; 
+          font-weight:bold; 
+          margin-top:1em; 
+          margin-bottom:0.5em; 
+          text-align:center }
+      div.subtitle { 
+          color:#C0F0C0; 
+          font-size:0.8em; 
+          margin-bottom:1em; 
+          text-align:center }
+      div.freetext { color:#F0F0F0 }
+      div.list     { color:#C0C0F0 }
+    </style>
+  </head>
+  <body>
+$ 1.5.2
+  % Version 1.1.1
+  _ 2012-02-21
+  ! Minor Enhancements
+  	* Added Help & Exit menu buttons
+  	* Added Changelog (you're reading it now)
+  % Version 1.1
+  _ 2012-02-19
+  ! Poke Back gets a UI!
+  	* Added service toggle button
+  	* Added per name statistics
+  	* Added Admob ad banner
+  % Version 1.0
+  _ 2011-09-08
+  ! Initial Release
+  	* Respond to "You have been poked..." SMS messages
+  	* Stay resident as a BroadcastReceiver
+  % Need more help?
+    * <a href="http://www.shellware.com/BlogEngine.Web/page/Poke-Back-for-Facebook.aspx">Poke Back Homepage</a> 
+    * You can contact me directly at the above URL and you can send me an email at <a href="mailto:shell@shellware.com">shell@shellware.com</a>
+$ END_OF_CHANGE_LOG
+  </body>
+</html>
