@@ -28,9 +28,9 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_alignParentTop="true" 
-			ads:adUnitId="a14f411815337e4"
+			ads:adUnitId="xxxxxx"
 			ads:adSize="BANNER"
-			ads:testDevices="TEST_EMULATOR, 21C8461502BBAA5D38F378330F640341"
+			ads:testDevices="TEST_EMULATOR, xxxx"
 			ads:loadAdOnCreate="true"/>
 		
         <TextView
